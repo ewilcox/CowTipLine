@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     $("#addtipForm").on("submit", function(e) {
 		e.preventDefault();
-
+		alert("reached submit");
 		//get values
 		var numcows = $("#numcows").val();
 		var howdangerous = $("#howdangerous option:selected").val();
@@ -33,6 +33,7 @@ $(document).ready(function() {
 		var name = new TipObject();
 		tip.save(
 			{
+				alert("reached save");
 				name:"Eric",
 				state:"frustrated",
 				time:"really late",
