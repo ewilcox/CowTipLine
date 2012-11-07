@@ -4,7 +4,7 @@ TipObject = Parse.Object.extend("TipObject");
 var currentLocation;
 
 $(document).ready(function() {
-
+	alert("working");
 	//I handle doing GPS on addForm display
     if($("#addTipBtn").length === 1) {
 		currentLocation=null;
