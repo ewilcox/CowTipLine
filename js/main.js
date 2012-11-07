@@ -1,6 +1,6 @@
 Parse.initialize("pNMq81MhBsGWhIBCrQ5kluEXpG3fsXjgv7dVU370", "KimBQdXF7RTYuZwdX9GOzZ2lD5VN6OlO6UahP7gI");
 TipObject = Parse.Object.extend("TipObject");
-TipObject = Parse.Object extend("MyObject");
+//TipObject = Parse.Object extend("MyObject");
 var currentLocation;
 
 $(document).ready(function() {
@@ -30,7 +30,7 @@ $(document).ready(function() {
 		var comments = $("#comments").val();
 
 		// My function to save data
-		var name = new MyObject();
+		var name = new TipObject();
 		tip.save(
 			{
 				name:"Eric",
@@ -44,6 +44,7 @@ $(document).ready(function() {
 				error:function() { alert("error alert")}
 			});
 
+/*
 		//TBD: Validation
 		var tip = new TipObject();
 		var point = new Parse.GeoPoint({latitude: currentLocation.latitude, longitude: currentLocation.longitude});
@@ -64,7 +65,7 @@ $(document).ready(function() {
 				});
 
     });
-
+*/
     if($("#tipdisplay").length === 1) {
 
 		//Update status to let the user know we are doing important things. Really important.
