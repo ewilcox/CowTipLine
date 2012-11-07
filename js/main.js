@@ -1,7 +1,7 @@
 Parse.initialize("pNMq81MhBsGWhIBCrQ5kluEXpG3fsXjgv7dVU370", "KimBQdXF7RTYuZwdX9GOzZ2lD5VN6OlO6UahP7gI");
 TipObject = Parse.Object.extend("TipObject");
 //TipObject = Parse.Object extend("MyObject");
-var currentLocation = 0,0;
+var currentLocation;
 
 $(document).ready(function() {
 	//alert("document ready");
@@ -12,7 +12,8 @@ $(document).ready(function() {
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			//alert("got to get current geolocation");
 			//store the long/lat
-			currentLocation = {longitude:pos.coords.longitude, latitude:pos.coords.latitude};
+			currentLocation = {longitude:0, latitude:0};
+			//{longitude:pos.coords.longitude, latitude:pos.coords.latitude};
 			$("#addTipBtn").removeAttr("disabled");
 		}, function(err) {
 			//Since geolocation failed, we can't allow the user to submit
@@ -29,6 +30,7 @@ $(document).ready(function() {
 		var howdangerous = $("#howdangerous option:selected").val();
 		var comments = $("#comments").val();
 
+/*
 		// My function to save data
 		var name = new TipObject();
 		tip.save(
@@ -45,7 +47,7 @@ $(document).ready(function() {
 				error:function() { }
 			});
 
-/*
+*/
 		//TBD: Validation
 		var tip = new TipObject();
 		var point = new Parse.GeoPoint({latitude: currentLocation.latitude, longitude: currentLocation.longitude});
@@ -66,12 +68,12 @@ $(document).ready(function() {
 				});
 
     });
-*/
+
     if($("#tipdisplay").length === 1) {
 
 		//Update status to let the user know we are doing important things. Really important.
 		$("#tipdisplay").html("Please stand by. Checking your location for nearby cow tips!");
-		alert("tipdisplay reached");
+		//alert("tipdisplay reached");
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var myLocation = new Parse.GeoPoint({latitude: pos.coords.latitude, longitude: pos.coords.longitude});
 
@@ -98,7 +100,7 @@ $(document).ready(function() {
 
 function renderResults(results,myLoc) {
 	console.log("renderResults: "+results.length);
-	alert("renderresults reached");
+	//alert("renderresults reached");
 	if(results.length) {
 		$("#tipdisplay").html("Displaying tips within 30 miles and from the last 7 days.");
 
