@@ -4,13 +4,13 @@ TipObject = Parse.Object.extend("TipObject");
 var currentLocation;
 
 $(document).ready(function() {
-	//alert("document ready");
+	alert("document ready");
 	//I handle doing GPS on addForm display
     if($("#addTipBtn").length === 1) {
-    	//alert("addtipbtn reached")
+    	alert("addtipbtn reached")
 		currentLocation=null;
 		navigator.geolocation.getCurrentPosition(function(pos) {
-			//alert("got to get current geolocation");
+			alert("got to get current geolocation");
 			//store the long/lat
 			currentLocation = {longitude:pos.coords.longitude, latitude:pos.coords.latitude};
 			$("#addTipBtn").removeAttr("disabled");
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
 		//Update status to let the user know we are doing important things. Really important.
 		$("#tipdisplay").html("Please stand by. Checking your location for nearby cow tips!");
-
+		alert("tipdisplay reached");
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var myLocation = new Parse.GeoPoint({latitude: pos.coords.latitude, longitude: pos.coords.longitude});
 
@@ -98,7 +98,7 @@ $(document).ready(function() {
 
 function renderResults(results,myLoc) {
 	console.log("renderResults: "+results.length);
-
+	alert("renderresults reached");
 	if(results.length) {
 		$("#tipdisplay").html("Displaying tips within 30 miles and from the last 7 days.");
 
