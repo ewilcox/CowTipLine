@@ -1,16 +1,16 @@
 Parse.initialize("pNMq81MhBsGWhIBCrQ5kluEXpG3fsXjgv7dVU370", "KimBQdXF7RTYuZwdX9GOzZ2lD5VN6OlO6UahP7gI");
 TipObject = Parse.Object.extend("TipObject");
 //TipObject = Parse.Object extend("MyObject");
-var currentLocation;
+var currentLocation = 0,0;
 
 $(document).ready(function() {
-	alert("document ready");
+	//alert("document ready");
 	//I handle doing GPS on addForm display
     if($("#addTipBtn").length === 1) {
-    	alert("addtipbtn reached")
-		currentLocation=null;
+    	//alert("addtipbtn reached")
+		//currentLocation=null;
 		navigator.geolocation.getCurrentPosition(function(pos) {
-			alert("got to get current geolocation");
+			//alert("got to get current geolocation");
 			//store the long/lat
 			currentLocation = {longitude:pos.coords.longitude, latitude:pos.coords.latitude};
 			$("#addTipBtn").removeAttr("disabled");
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     $("#addtipForm").on("submit", function(e) {
 		e.preventDefault();
-		alert("reached submit");
+		//alert("reached submit");
 		//get values
 		var numcows = $("#numcows").val();
 		var howdangerous = $("#howdangerous option:selected").val();
@@ -33,7 +33,7 @@ $(document).ready(function() {
 		var name = new TipObject();
 		tip.save(
 			{
-				alert("reached save");
+				//alert("reached save");
 				name:"Eric",
 				state:"frustrated",
 				time:"really late",
@@ -42,7 +42,7 @@ $(document).ready(function() {
 				comments:comments
 			},{
 				success:function() { document.location.href='index.html'; },
-				error:function() { alert("error alert")}
+				error:function() { }
 			});
 
 /*
