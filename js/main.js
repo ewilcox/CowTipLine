@@ -9,7 +9,7 @@ $(document).ready(function() {
     if($("#addTipBtn").length === 1) {
 		currentLocation=null;
 		navigator.geolocation.getCurrentPosition(function(pos) {
-			alert("got to get current geolocation");
+			// alert not working   alert("got to get current geolocation");
 			//store the long/lat
 			currentLocation = {longitude:pos.coords.longitude, latitude:pos.coords.latitude};
 			$("#addTipBtn").removeAttr("disabled");
