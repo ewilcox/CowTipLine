@@ -1,15 +1,16 @@
 Parse.initialize("pNMq81MhBsGWhIBCrQ5kluEXpG3fsXjgv7dVU370", "KimBQdXF7RTYuZwdX9GOzZ2lD5VN6OlO6UahP7gI");
 TipObject = Parse.Object.extend("TipObject");
-
+TipObject = Parse.Object extend("MyObject");
 var currentLocation;
 
 $(document).ready(function() {
-	alert("working");
+	//alert("document ready");
 	//I handle doing GPS on addForm display
     if($("#addTipBtn").length === 1) {
+    	//alert("addtipbtn reached")
 		currentLocation=null;
 		navigator.geolocation.getCurrentPosition(function(pos) {
-			// alert not working   alert("got to get current geolocation");
+			//alert("got to get current geolocation");
 			//store the long/lat
 			currentLocation = {longitude:pos.coords.longitude, latitude:pos.coords.latitude};
 			$("#addTipBtn").removeAttr("disabled");
@@ -27,6 +28,21 @@ $(document).ready(function() {
 		var numcows = $("#numcows").val();
 		var howdangerous = $("#howdangerous option:selected").val();
 		var comments = $("#comments").val();
+
+		// My function to save data
+		var name = new MyObject();
+		tip.save(
+			{
+				name:"Eric",
+				state:"frustrated",
+				time:"really late",
+				numcows:numcows,
+				howdangerous:howdangerous,
+				comments:comments
+			},{
+				success:function() { document.location.href='index.html'; },
+				error:function() { alert("error alert")}
+			});
 
 		//TBD: Validation
 		var tip = new TipObject();
