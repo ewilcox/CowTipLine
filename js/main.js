@@ -35,24 +35,6 @@ $(document).ready(function() {
 		console.log(howdangerous);
 		console.log(comments);
 
-/*
-		// My function to save data
-		var name = new TipObject();
-		tip.save(
-			{
-				//alert("reached save");
-				name:"Eric",
-				state:"frustrated",
-				time:"really late",
-				numcows:numcows,
-				howdangerous:howdangerous,
-				comments:comments
-			},{
-				success:function() { document.location.href='index.html'; },
-				error:function() { }
-			});
-
-*/
 		//TBD: Validation
 		var tip = new TipObject();
 		var point = new Parse.GeoPoint({latitude: currentLocation.latitude, longitude: currentLocation.longitude});
