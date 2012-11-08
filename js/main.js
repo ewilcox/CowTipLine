@@ -1,31 +1,39 @@
-Parse.initialize("oe3dboiG0RzJNULxKvdHYGWEb3Cq7mzHRC3Dwh6E", "cR8whmMjybMoXUqfAzhxUJSiBXw3QPt7ZB4bRGw8");
+Parse.initialize("pNMq81MhBsGWhIBCrQ5kluEXpG3fsXjgv7dVU370", "KimBQdXF7RTYuZwdX9GOzZ2lD5VN6OlO6UahP7gI");
 TipObject = Parse.Object.extend("TipObject");
 
 var currentLocation;
 
 $(document).ready(function() {
-
+	//alert("document ready");
 	//I handle doing GPS on addForm display
     if($("#addTipBtn").length === 1) {
-		currentLocation=null;
+		//currentLocation=null;
+		
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			//store the long/lat
-			currentLocation = {longitude:pos.coords.longitude, latitude:pos.coords.latitude};
+			console.log("into geolocation code section");
+			currentLocation = {longitude:0, latitude:0};
+			//{longitude:pos.coords.longitude, latitude:pos.coords.latitude};
 			$("#addTipBtn").removeAttr("disabled");
 		}, function(err) {
 			//Since geolocation failed, we can't allow the user to submit
-			doAlert("Sorry, but we couldn't find your location.\nYou may not post a cow tip.");
+			currentLocation = { longitude:0, latitude:0 };
+			$('#addTipBtn').removeAttr("disabled");
+			console.log("location failed");
+			//doAlert("Sorry, but we couldn't find your location.\nYou may not post a cow tip.");
 		});
 
     }
 
     $("#addtipForm").on("submit", function(e) {
 		e.preventDefault();
-
 		//get values
 		var numcows = $("#numcows").val();
 		var howdangerous = $("#howdangerous option:selected").val();
 		var comments = $("#comments").val();
+		console.log(numcows);
+		console.log(howdangerous);
+		console.log(comments);
 
 		//TBD: Validation
 		var tip = new TipObject();
