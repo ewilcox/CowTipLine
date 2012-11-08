@@ -1,34 +1,39 @@
 Parse.initialize("pNMq81MhBsGWhIBCrQ5kluEXpG3fsXjgv7dVU370", "KimBQdXF7RTYuZwdX9GOzZ2lD5VN6OlO6UahP7gI");
 TipObject = Parse.Object.extend("TipObject");
-//TipObject = Parse.Object extend("MyObject");
+
 var currentLocation;
 
 $(document).ready(function() {
 	//alert("document ready");
 	//I handle doing GPS on addForm display
     if($("#addTipBtn").length === 1) {
-    	//alert("addtipbtn reached")
 		//currentLocation=null;
+		
 		navigator.geolocation.getCurrentPosition(function(pos) {
-			//alert("got to get current geolocation");
 			//store the long/lat
+			console.log("into geolocation code section");
 			currentLocation = {longitude:0, latitude:0};
 			//{longitude:pos.coords.longitude, latitude:pos.coords.latitude};
 			$("#addTipBtn").removeAttr("disabled");
 		}, function(err) {
 			//Since geolocation failed, we can't allow the user to submit
-			doAlert("Sorry, but we couldn't find your location.\nYou may not post a cow tip.");
+			currentLocation = { longitude:0, latitude:0 };
+			$('#addTipBtn').removeAttr("disabled");
+			console.log("location failed");
+			//doAlert("Sorry, but we couldn't find your location.\nYou may not post a cow tip.");
 		});
 
     }
 
     $("#addtipForm").on("submit", function(e) {
 		e.preventDefault();
-		//alert("reached submit");
 		//get values
 		var numcows = $("#numcows").val();
 		var howdangerous = $("#howdangerous option:selected").val();
 		var comments = $("#comments").val();
+		console.log(numcows);
+		console.log(howdangerous);
+		console.log(comments);
 
 /*
 		// My function to save data
@@ -73,7 +78,7 @@ $(document).ready(function() {
 
 		//Update status to let the user know we are doing important things. Really important.
 		$("#tipdisplay").html("Please stand by. Checking your location for nearby cow tips!");
-		//alert("tipdisplay reached");
+
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			var myLocation = new Parse.GeoPoint({latitude: pos.coords.latitude, longitude: pos.coords.longitude});
 
@@ -100,7 +105,7 @@ $(document).ready(function() {
 
 function renderResults(results,myLoc) {
 	console.log("renderResults: "+results.length);
-	//alert("renderresults reached");
+
 	if(results.length) {
 		$("#tipdisplay").html("Displaying tips within 30 miles and from the last 7 days.");
 
